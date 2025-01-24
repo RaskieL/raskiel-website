@@ -1,0 +1,25 @@
+/*Corps Général*/
+html{
+    background-color: #0a0913;
+}
+body{
+    color: #e1f6f0;
+    font-size: 24px;
+    text-align: center;
+    font-family: "Space Mono";
+}
+
+hr{
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+/*Style Div*/
+
+/*Liens*/
+a{
+    color: #e1f6f0;
+}
+a:hover{
+    color: #81d9f5;
+}

@@ -1,0 +1,47 @@
+---
+import CommonHead from '../components/CommonHead.astro'
+
+const {id, title, start_date, end_date, author, description, category, status, lang} = Astro.props
+const langfr = lang === "fr"
+const sdate = new Date(start_date).toLocaleDateString();
+const edate = new Date(end_date).toLocaleDateString();
+---
+
+<html lang={lang}>
+	<CommonHead />
+    <body>
+        <div class="portfolio">
+            <h1>{title}</h1>
+            {langfr ? (
+                <div class="details">
+                    <p>Catégorie: {category} | Status: {status}<br>
+                    Par {author}, du {sdate} au {edate}</p>
+                    <p>{description}</p><br><br>
+                </div>
+            ) : (
+                <div class="details">
+                    <p>Category: {category} | Status: {status}<br>
+                        By {author}, from {sdate} to {edate}</p>
+                    <p>{description}</p><br><br>
+                </div>
+            )}
+            <slot />
+        </div>
+    </body>
+</html>
+
+<style>
+.portfolio{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 70%;
+}
+.details{
+    display: flex;
+    flex-direction: column;
+    font-size: 26px;
+    border: 1px solid white;
+    margin-bottom: 50px;
+}
+</style>

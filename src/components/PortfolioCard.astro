@@ -1,0 +1,95 @@
+---
+import { getEntry } from "astro:content"
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const {id, title, start_date, end_date, author, description, category, status, lang} = Astro.props
+const s_date = new Date(start_date).toLocaleDateString()
+const e_date = new Date(end_date).toLocaleDateString()
+const langfr = lang === "fr"
+const entry = await getEntry('portfolio', id)
+---
+
+{langfr ? (
+<div class="card">
+    <div class="card-details">
+        <p>Date:<br>{s_date}</p>
+        <p>Categorie:<br>{category}</p>
+        <p>Status:<br>{status}</p>
+    </div>
+    <div class="card-content">
+        <div class="card-text">
+            <h3>{title}</h3>
+            <p>Par: {author}</p>
+            <p>{description}</p>
+        </div>
+        <div class="card-nav">
+            <a class="button" href={getRelativeLocaleUrl('fr',"/portfolio/"+id)}>Accéder -></a>
+        </div>
+    </div>
+</div>
+) : (
+<div class="card">
+    {langfr}
+    <div class="card-details">
+        <p>Date:<br>{s_date}</p>
+        <p>Category:<br>{category}</p>
+        <p>Status:<br>{status}</p>
+    </div>
+    <div class="card-content">
+        <div class="card-text">
+            <h3>{title}</h3>
+            <p>By: {author}</p>
+            <p>{description}</p>
+        </div>
+        <div class="card-nav">
+            <a class="button" href={getRelativeLocaleUrl('en',"/portfolio/"+id)}>Go to -></a>
+        </div>
+    </div>
+</div>
+)}
+
+
+<style>
+.button{
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: linear 0.2s;
+}
+.button:hover{
+    color: #e1f6f0;
+    box-shadow: 0px 0px 15px #fdd28f;
+    transition: linear 0.2s;
+}
+.card{
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    height: 400px;
+    border: 1px solid white;
+    margin: auto;
+    transition: linear 0.2s;
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px #e1f6f0;
+}
+.card:hover{
+    transform: scale(1.05);
+    transition: linear 0.2s;
+    box-shadow: 10px 20px 10px #e1f6f0;
+}
+.card-details{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border-right: 1px solid white;
+}
+.card-content{
+    margin: 10px;
+}
+.card-text{
+    margin-bottom: 40px;
+}
+</style>

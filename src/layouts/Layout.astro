@@ -1,0 +1,14 @@
+---
+const {pageTitle} = Astro.props
+import CommonHead from '../components/CommonHead.astro'
+---
+
+<html lang="fr">
+	<CommonHead />
+    <body>
+        <hr>
+        <h1>{pageTitle}</h1>
+        <hr>
+        <slot />
+    </body>
+</html>

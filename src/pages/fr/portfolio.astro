@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "../../layouts/Layout.astro"
+import PortfolioCard from "../../components/PortfolioCard.astro"
+const portfolio = await getCollection('portfolio')
+---
+<Layout pageTitle="Portfolio">
+	<div class="portfolio">
+		{portfolio.map((a: any)=>(
+			<PortfolioCard 
+			id={a.id}
+			title={a.data.title}
+			start_date={a.data.start_date}
+			end_date={a.data.end_date}
+			author={a.data.author}
+			description={a.data.description}
+			category={a.data.category}
+			status={a.data.status}
+			lang="fr">
+			</PortfolioCard>
+		))}
+	</div>
+</Layout>
+
+<style>
+	.portfolio{
+		display: grid;
+		grid-template-columns: repeat(3,10fr);
+		gap: 50px;
+		grid-auto-rows: minmax(100px,auto);
+		margin: 50px;
+	}
+	@media (width <= 1840px){
+		.portfolio{
+			display: grid;
+			grid-template-columns: repeat(2,10fr);
+		}
+	}
+	@media (width <= 1300px){
+		.portfolio{
+			display: grid;
+			grid-template-columns: repeat(1,10fr);
+		}
+	}
+</style>

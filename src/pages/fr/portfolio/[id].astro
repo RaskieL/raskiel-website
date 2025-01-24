@@ -1,0 +1,33 @@
+---
+import { getCollection,getEntry, render } from "astro:content"
+import PortfolioLayout from "../../../layouts/PortfolioLayout.astro";
+
+export const portfolio = await getCollection('portfolio')
+
+export async function getStaticPaths() {
+    let params = []
+    for(let i = 0; i < portfolio.length; i++){
+        let p = {params: {id: portfolio[i].id}};
+        params.push(p);
+    }
+  return params;
+}
+
+const {id} = Astro.params
+const entry = await getEntry("portfolio", id);
+const {Content, headings} = await render(entry!);
+const lang = Astro.currentLocale
+---
+
+<PortfolioLayout
+			id={entry.id}
+			title={entry.data.title}
+			start_date={entry.data.start_date}
+			end_date={entry.data.end_date}
+			author={entry.data.author}
+			description={entry.data.description}
+			category={entry.data.category}
+			status={entry.data.status}
+			lang={lang}>
+<Content />
+</PortfolioLayout>
