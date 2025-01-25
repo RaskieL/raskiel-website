@@ -3,20 +3,46 @@ import { getCollection } from "astro:content"
 import Layout from "../../layouts/Layout.astro"
 import PortfolioCard from "../../components/PortfolioCard.astro"
 const coll = await getCollection('portfolio')
-const portfolio = coll.sort((a,b) => b.data.start_date.getTime()-a.data.start_date.getTime() );
+const portfolio = coll.sort((a, b) => {
+    const astatus = a.data.status;
+    const bstatus = b.data.status;
+    const priority = {
+        "Finished": 2,
+        "In works": 1,
+        "Paused": 3
+    };
+    if (priority[astatus] < priority[bstatus]) {
+        return -1;
+    }
+    if (priority[astatus] > priority[bstatus]) {
+        return 1;
+    }
+    if (astatus === bstatus) {
+        return b.data.start_date.getTime() - a.data.start_date.getTime();
+    }
+    return 0;
+});
 ---
 <Layout pageTitle="Portfolio">
 	<div class="legend">
 		<div class="legend-line">
-			<div class="legend-color" style="background-color: blue;"></div>
+			<a class="download" download href="/CV_Maiken_DAngelo_Stage_Informatique.pdf">
+				<img src="/download.png">
+			</a>
+			<a download href="/CV_Maiken_DAngelo_Stage_Informatique.pdf">Télécharger CV</a>
+		</div>
+	</div>
+	<div class="legend">
+		<div class="legend-line">
+			<div class="legend-color" style="background-color: #000091;"></div>
 			<p>Projet Personnel</p>
 		</div>
 		<div class="legend-line">
-			<div class="legend-color" style="background-color: white;"></div>
+			<div class="legend-color" style="background-color: #FFFFFF;"></div>
 			<p>Projet Universitaire</p>
 		</div>
 		<div class="legend-line">
-			<div class="legend-color" style="background-color: red;"></div>
+			<div class="legend-color" style="background-color: #E1000F;"></div>
 			<p>Projet Professionnel</p>
 		</div>
 	</div>
@@ -40,6 +66,11 @@ const portfolio = coll.sort((a,b) => b.data.start_date.getTime()-a.data.start_da
 
 
 <style>
+	.download{
+		height: 32px;
+		width: 32px;
+		margin: auto;
+	}
 	.legend{
 		display: flex;
 		flex-direction: row;
@@ -55,8 +86,8 @@ const portfolio = coll.sort((a,b) => b.data.start_date.getTime()-a.data.start_da
 		gap: 15px;
 	}
 	.legend-color{
-		width: 36px;
-		height: 36px;
+		width: 32px;
+		height: 32px;
 		margin: auto;
 		border: 1px solid white;
 		border-radius: 15px;

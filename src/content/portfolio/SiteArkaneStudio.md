@@ -2,7 +2,7 @@
 title: "Site vitrine & Rapport économique"
 start_date: 2023-09-10
 end_date: 2023-10-20
-author: "RaskieL"
+author: "Maïken"
 description: "Site vitrine sur Arkane Studios, et rédaction d'un rapport économique sur ladite entreprise"
 category: "Programmation"
 context: "Universitary"

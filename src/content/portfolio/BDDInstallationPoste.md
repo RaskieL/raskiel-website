@@ -2,7 +2,7 @@
 title: "Base de données & Installation de poste"
 start_date: 2023-10-25
 end_date: 2023-11-31
-author: "RaskieL"
+author: "Maïken"
 description: "Gestion de base de données avec PyMysql. Installation d'un poste de travail Linux."
 category: "Programmation"
 context: "Universitary"

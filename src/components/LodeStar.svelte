@@ -34,18 +34,18 @@
         {#if lang === "fr"}
         <div class="lodepaths">
             <a href="/fr/">Accueil</a>
-            <a href={getRelativeLocaleUrl('fr','blog')}>Blog</a>
+            <a href={getRelativeLocaleUrl('fr','blog')} class="disabled-link">Blog</a>
             <a href="{getRelativeLocaleUrl('fr','portfolio')}">Portfolio</a>
-            <a href="{getRelativeLocaleUrl('fr','gallery')}">Galerie</a>
+            <a href="{getRelativeLocaleUrl('fr','gallery')}" class="disabled-link">Galerie</a>
             <a href="{getRelativeLocaleUrl('fr','contact')}">Contact</a>
         </div>
         {/if}
         {#if lang === "en"}
         <div class="lodepaths">
             <a href="/en/">Home</a>
-            <a href={getRelativeLocaleUrl('en','blog')}>Blog</a>
+            <a href={getRelativeLocaleUrl('en','blog')} class="disabled-link">Blog</a>
             <a href="{getRelativeLocaleUrl('en','portfolio')}">Portfolio</a>
-            <a href="{getRelativeLocaleUrl('en','gallery')}">Gallery</a>
+            <a href="{getRelativeLocaleUrl('en','gallery')}" class="disabled-link">Gallery</a>
             <a href="{getRelativeLocaleUrl('en','contact')}">Contact</a>
         </div>
         {/if}

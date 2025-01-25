@@ -54,17 +54,17 @@ const entry = await getEntry('portfolio', pid)
 </div>
 )}
 
-<script is:inline define:vars={{entry}}>
+<script is:inline define:vars={{entry, langfr}}>
 		let d = document.getElementById("status"+entry.id);
 		switch(entry.data.status){
 			case "Paused":
-                d.style.backgroundColor = "gray"
+                d.style.backgroundColor = "#2c8769"
 				break;
 			case "In works":
-				d.style.backgroundColor = "yellow"
+				d.style.backgroundColor = "#920042"
 				break;
 			case "Finished":
-				d.style.backgroundColor = "cyan"
+				d.style.backgroundColor = "#085e7e"
 				break;
 			default:
 				break;
@@ -72,13 +72,13 @@ const entry = await getEntry('portfolio', pid)
         d = document.getElementById("context"+entry.id);
         switch(entry.data.context){
             case "Personal":
-                d.style.backgroundColor = "blue"
+                d.style.backgroundColor = langfr ? "#000091" : "#012169"
                 break;
             case "Universitary":
-                d.style.backgroundColor = "white"
+                d.style.backgroundColor = "#FFFFFF"
                 break;
-            case "Internship":
-                d.style.backgroundColor = "red"
+            case "Professional":
+                d.style.backgroundColor = langfr ? "#E1000F" : "#C8102E"
                 break;
         }
 </script>
@@ -141,7 +141,7 @@ const entry = await getEntry('portfolio', pid)
 }
 .card-text{
     margin-bottom: 40px;
-    height: 250px;
+    height: 260px;
 }
 .card-desc{
     height: 150px;

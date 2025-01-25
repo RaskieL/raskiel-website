@@ -2,5 +2,69 @@
 import Layout from "../../layouts/Layout.astro"
 ---
 <Layout pageTitle="Contact">
-	<h2>Page en construction...</h2>
+	<div class="contact">
+		<div class="contact-body">
+			<div class="contact-info">
+				<h2>Informations de contact</h2>
+				<ul>
+					<li><strong>Téléphone:</strong> +33 7 83 85 78 60</li>
+					<li><strong>E-Mail:</strong> maiken.dangelo@gmail.com</li>
+					<li><strong>Localisation:</strong> Belfort, France</li>
+				</ul>
+				<div class="contact-lower">
+					<h2>Réseaux sociaux</h2>
+					<div class="networks">
+						<a href="https://github.com/RaskieL" target="_blank"><img src="/github.png" alt="personal github"></a>
+						<a href="https://github.com/MaikenDANGELO" target="_blank"><img src="/github.png" alt="uni github"></a>
+						<a href="https://discordapp.com/users/444074251079778314" target="_blank"><img src="/discord.png" alt="discord"></a>
+						<a href="https://www.linkedin.com/in/maïken-d-angelo" target="_blank"><img src="/linkedin.png" alt="linkedin"></a>
+						<a href="https://paypal.me/RaskieL" target="_blank"><img src="/paypal.png" alt="paypal"></a>
+					</div>
+				</div>
+			</div>
+			<div class="contact-bonus">
+				<iframe width="525" height="450" src="https://www.openstreetmap.org/export/embed.html?bbox=6.839160919189454%2C47.63530643968886%2C6.874995231628419%2C47.64742183822271&amp;layer=mapnik&amp;marker=47.641364490161884%2C6.8570780754089355" style="border: 1px solid black"></iframe>
+			</div>
+		</div>
+	</div>
 </Layout>
+
+<style>
+	.contact{
+		display: flex;
+		flex-direction: column;
+		text-align: justify;
+		margin-left: auto;
+		margin-right: auto;
+		justify-items: center;
+		width: 65%;
+		gap: 25px;
+	}
+	.contact-bonus{
+		padding: 40px;
+	}
+	.contact-bonus iframe{
+		border-radius: 40px;
+	}
+	.contact-body{
+		display: flex;
+		flex-direction: row;
+		gap: 100px;
+	}
+	.networks{
+		display: flex;
+		flex-direction: row;
+		gap: 45px;
+	}
+	.networks a{
+		transition: linear 0.1s;
+	}
+	.networks a:hover{
+		transform: scale(1.15);
+		transition: linear 0.1s;
+	}
+	.contact-lower{
+		display: flex;
+		flex-direction: column;
+	}
+</style>

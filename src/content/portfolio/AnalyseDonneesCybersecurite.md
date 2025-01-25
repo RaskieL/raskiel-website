@@ -2,7 +2,7 @@
 title: "Analyse de données: Cybersécurité"
 start_date: 2024-10-15
 end_date: 2024-12-20
-author: "RaskieL"
+author: "Maïken"
 description: "Projet d'analyse d'un jeu de données sur des cyberattaques simulées sur des objets connectés. Utilisation de Python et de Machine Learning."
 category: "Programmation"
 context: "Universitary"
