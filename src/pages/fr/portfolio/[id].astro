@@ -20,14 +20,15 @@ const lang = Astro.currentLocale
 ---
 
 <PortfolioLayout
-			id={entry.id}
-			title={entry.data.title}
-			start_date={entry.data.start_date}
-			end_date={entry.data.end_date}
-			author={entry.data.author}
-			description={entry.data.description}
-			category={entry.data.category}
-			status={entry.data.status}
-			lang={lang}>
+			id={entry!.id}
+			title={entry!.data.title}
+			start_date={entry!.data.start_date}
+			end_date={entry!.data.end_date}
+			author={entry!.data.author}
+			description={entry!.data.description}
+			category={entry!.data.category}
+			status={entry!.data.status}
+			lang={lang}
+			context={entry!.data.context}>
 <Content />
 </PortfolioLayout>

@@ -1,14 +1,18 @@
 ---
 const {pageTitle} = Astro.props
 import CommonHead from '../components/CommonHead.astro'
+import Footer from '../components/Footer.astro'
 ---
 
 <html lang="fr">
-	<CommonHead />
+	<CommonHead title={"RaskieL - "+pageTitle} />
     <body>
         <hr>
-        <h1>{pageTitle}</h1>
+            <h1>{pageTitle}</h1>
         <hr>
-        <slot />
+        <div class="main-content">
+            <slot />
+        </div>
     </body>
+    <Footer></Footer>
 </html>

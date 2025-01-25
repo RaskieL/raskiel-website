@@ -2,13 +2,28 @@
 import { getCollection } from "astro:content"
 import Layout from "../../layouts/Layout.astro"
 import PortfolioCard from "../../components/PortfolioCard.astro"
-const portfolio = await getCollection('portfolio')
+const coll = await getCollection('portfolio')
+const portfolio = coll.sort((a,b) => b.data.start_date.getTime()-a.data.start_date.getTime() );
 ---
 <Layout pageTitle="Portfolio">
+	<div class="legend">
+		<div class="legend-line">
+			<div class="legend-color" style="background-color: blue;"></div>
+			<p>Projet Personnel</p>
+		</div>
+		<div class="legend-line">
+			<div class="legend-color" style="background-color: white;"></div>
+			<p>Projet Universitaire</p>
+		</div>
+		<div class="legend-line">
+			<div class="legend-color" style="background-color: red;"></div>
+			<p>Projet Professionnel</p>
+		</div>
+	</div>
 	<div class="portfolio">
 		{portfolio.map((a: any)=>(
-			<PortfolioCard 
-			id={a.id}
+			<PortfolioCard
+			pid={a.id}
 			title={a.data.title}
 			start_date={a.data.start_date}
 			end_date={a.data.end_date}
@@ -16,19 +31,41 @@ const portfolio = await getCollection('portfolio')
 			description={a.data.description}
 			category={a.data.category}
 			status={a.data.status}
-			lang="fr">
+			lang="fr"
+			context={a.data.context}>
 			</PortfolioCard>
 		))}
 	</div>
 </Layout>
 
+
 <style>
+	.legend{
+		display: flex;
+		flex-direction: row;
+		margin-left: auto;
+		margin-right: auto;
+		justify-content: center;
+		align-content: center;
+		gap: 50px;
+	}
+	.legend-line{
+		display: flex;
+		flex-direction: row;
+		gap: 15px;
+	}
+	.legend-color{
+		width: 36px;
+		height: 36px;
+		margin: auto;
+		border: 1px solid white;
+		border-radius: 15px;
+	}
 	.portfolio{
 		display: grid;
 		grid-template-columns: repeat(3,10fr);
-		gap: 50px;
-		grid-auto-rows: minmax(100px,auto);
-		margin: 50px;
+		gap: 100px;
+		grid-auto-rows: minmax(550px,auto);
 	}
 	@media (width <= 1840px){
 		.portfolio{

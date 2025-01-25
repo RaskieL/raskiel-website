@@ -8,6 +8,10 @@ body{
     text-align: center;
     font-family: "Space Mono";
 }
+.main-content{
+    margin: 50px;
+    min-height: 44.6vh;
+}
 
 hr{
     border: 1px solid white;

@@ -1,33 +1,37 @@
 ---
 import CommonHead from '../components/CommonHead.astro'
+import Footer from '../components/Footer.astro';
 
-const {id, title, start_date, end_date, author, description, category, status, lang} = Astro.props
+const {id, title, start_date, end_date, author, description, category, status, lang, context} = Astro.props
 const langfr = lang === "fr"
 const sdate = new Date(start_date).toLocaleDateString();
 const edate = new Date(end_date).toLocaleDateString();
 ---
 
 <html lang={lang}>
-	<CommonHead />
+	<CommonHead title={"RaskieL - "+title} />
     <body>
-        <div class="portfolio">
-            <h1>{title}</h1>
-            {langfr ? (
-                <div class="details">
-                    <p>Catégorie: {category} | Status: {status}<br>
-                    Par {author}, du {sdate} au {edate}</p>
-                    <p>{description}</p><br><br>
-                </div>
-            ) : (
-                <div class="details">
-                    <p>Category: {category} | Status: {status}<br>
-                        By {author}, from {sdate} to {edate}</p>
-                    <p>{description}</p><br><br>
-                </div>
-            )}
-            <slot />
+        <div class="main-content">
+            <div class="portfolio">
+                <h1 style="text-align: center;">{title}</h1>
+                {langfr ? (
+                    <div class="details">
+                        <p>Catégorie: {category} | Status: {status} | {context}<br>
+                        Par {author}, du {sdate} au {edate}</p>
+                        <p class="desc">{description}</p><br><br>
+                    </div>
+                ) : (
+                    <div class="details">
+                        <p>Category: {category} | Status: {status} | {context}<br>
+                            By {author}, from the {sdate} to the {edate}</p>
+                        <p class="desc">{description}</p><br><br>
+                    </div>
+                )}
+                <slot />
+            </div>
         </div>
     </body>
+    <Footer></Footer>
 </html>
 
 <style>
@@ -35,7 +39,8 @@ const edate = new Date(end_date).toLocaleDateString();
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 70%;
+    width: 60%;
+    text-align: justify;
 }
 .details{
     display: flex;
@@ -43,5 +48,10 @@ const edate = new Date(end_date).toLocaleDateString();
     font-size: 26px;
     border: 1px solid white;
     margin-bottom: 50px;
+    text-align: center;
+    padding: 25px;
+}
+.desc{
+    text-align: justify;
 }
 </style>

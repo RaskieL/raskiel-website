@@ -25,6 +25,7 @@ const portfolio = defineCollection({
         author: z.string(),
         description: z.string(),
         category: z.enum(['Programmation', 'Art']),
+        context: z.enum(['Personal', 'Universitary', 'Professional']),
         status: z.enum(['Paused', 'In works', 'Finished'])
     })
 });

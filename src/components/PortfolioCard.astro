@@ -2,54 +2,103 @@
 import { getEntry } from "astro:content"
 import { getRelativeLocaleUrl } from "astro:i18n";
 
-const {id, title, start_date, end_date, author, description, category, status, lang} = Astro.props
+const {pid, title, start_date, end_date, author, description, category, status, lang} = Astro.props
 const s_date = new Date(start_date).toLocaleDateString()
 const e_date = new Date(end_date).toLocaleDateString()
 const langfr = lang === "fr"
-const entry = await getEntry('portfolio', id)
+const entry = await getEntry('portfolio', pid)
 ---
 
 {langfr ? (
-<div class="card">
+<div class="card" id={pid}>
     <div class="card-details">
-        <p>Date:<br>{s_date}</p>
+        <p>{s_date}</p>
+        <p>Par: {author}</p>
         <p>Categorie:<br>{category}</p>
-        <p>Status:<br>{status}</p>
+        <p><span class="status" id={"status"+pid}></span>{status}</p>
+        <div class="context" id={"context"+pid}></div>
     </div>
     <div class="card-content">
         <div class="card-text">
             <h3>{title}</h3>
-            <p>Par: {author}</p>
-            <p>{description}</p>
+            <div class="card-desc">
+                <p>{description}</p>
+            </div>
         </div>
         <div class="card-nav">
-            <a class="button" href={getRelativeLocaleUrl('fr',"/portfolio/"+id)}>Accéder -></a>
+            <a class="button" href={getRelativeLocaleUrl('fr',"/portfolio/"+pid)}>Accéder -></a>
         </div>
     </div>
 </div>
 ) : (
-<div class="card">
+<div class="card" id={pid}>
     {langfr}
     <div class="card-details">
-        <p>Date:<br>{s_date}</p>
+        <p>{s_date}</p>
+        <p>By: {author}</p>
         <p>Category:<br>{category}</p>
-        <p>Status:<br>{status}</p>
+        <p><span class="status" id={"status"+pid}></span>{status}</p>
+        <div class="context" id={"context"+pid}></div>
     </div>
     <div class="card-content">
         <div class="card-text">
             <h3>{title}</h3>
-            <p>By: {author}</p>
-            <p>{description}</p>
+            <div class="card-desc">
+                <p>{description}</p>
+            </div>
         </div>
         <div class="card-nav">
-            <a class="button" href={getRelativeLocaleUrl('en',"/portfolio/"+id)}>Go to -></a>
+            <a class="button" href={getRelativeLocaleUrl('en',"/portfolio/"+pid)}>Go to -></a>
         </div>
     </div>
 </div>
 )}
 
+<script is:inline define:vars={{entry}}>
+		let d = document.getElementById("status"+entry.id);
+		switch(entry.data.status){
+			case "Paused":
+                d.style.backgroundColor = "gray"
+				break;
+			case "In works":
+				d.style.backgroundColor = "yellow"
+				break;
+			case "Finished":
+				d.style.backgroundColor = "cyan"
+				break;
+			default:
+				break;
+		}
+        d = document.getElementById("context"+entry.id);
+        switch(entry.data.context){
+            case "Personal":
+                d.style.backgroundColor = "blue"
+                break;
+            case "Universitary":
+                d.style.backgroundColor = "white"
+                break;
+            case "Internship":
+                d.style.backgroundColor = "red"
+                break;
+        }
+</script>
+
 
 <style>
+.context{
+    width: 128px;
+    height: 20px;
+    border: 1px solid white;
+    margin: auto;
+}
+.status{
+    padding-left: 36px;
+    margin-right: 10px;
+    width: 16px;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 15px;
+}
 .button{
     border: 1px solid white;
     padding: 10px;
@@ -67,8 +116,8 @@ const entry = await getEntry('portfolio', id)
 .card{
     display: flex;
     flex-direction: row;
-    width: 600px;
-    height: 400px;
+    width: 700px;
+    height: 500px;
     border: 1px solid white;
     margin: auto;
     transition: linear 0.2s;
@@ -83,7 +132,8 @@ const entry = await getEntry('portfolio', id)
 .card-details{
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 200px;
+    padding: 15px;
     border-right: 1px solid white;
 }
 .card-content{
@@ -91,5 +141,13 @@ const entry = await getEntry('portfolio', id)
 }
 .card-text{
     margin-bottom: 40px;
+    height: 325px;
+}
+.card-desc{
+    height: 250px;
+    overflow-y: scroll;
+    border-radius: 25px;
+    text-align: justify;
+    margin: 10px;
 }
 </style>

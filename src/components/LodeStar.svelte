@@ -37,7 +37,7 @@
             <a href={getRelativeLocaleUrl('fr','blog')}>Blog</a>
             <a href="{getRelativeLocaleUrl('fr','portfolio')}">Portfolio</a>
             <a href="{getRelativeLocaleUrl('fr','gallery')}">Galerie</a>
-            <a href="{getRelativeLocaleUrl('fr','about')}">À propos</a>
+            <a href="{getRelativeLocaleUrl('fr','contact')}">Contact</a>
         </div>
         {/if}
         {#if lang === "en"}
@@ -46,7 +46,7 @@
             <a href={getRelativeLocaleUrl('en','blog')}>Blog</a>
             <a href="{getRelativeLocaleUrl('en','portfolio')}">Portfolio</a>
             <a href="{getRelativeLocaleUrl('en','gallery')}">Gallery</a>
-            <a href="{getRelativeLocaleUrl('en','about')}">About</a>
+            <a href="{getRelativeLocaleUrl('en','contact')}">Contact</a>
         </div>
         {/if}
     {/if}
