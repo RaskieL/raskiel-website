@@ -64,8 +64,8 @@ const portfolio = coll.sort((a,b) => b.data.start_date.getTime()-a.data.start_da
 	.portfolio{
 		display: grid;
 		grid-template-columns: repeat(3,10fr);
-		gap: 100px;
-		grid-auto-rows: minmax(550px,auto);
+		gap: 50px;
+		grid-auto-rows: minmax(450px,auto);
 	}
 	@media (width <= 1840px){
 		.portfolio{
